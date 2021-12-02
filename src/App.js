@@ -8,7 +8,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMessages());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Greetings greeting={state.message} />
