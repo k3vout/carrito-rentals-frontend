@@ -1,32 +1,30 @@
 // --------- PATHS ------------------------------
-const UPLOAD_MESSAGES = 'REDUX/APP/APP/UPLOAD_MESSAGES';
-const FETCH_MESSAGES = 'REDUX/APP/APP/FETCH_MESSAGES';
+const USER_LOGGED_STATE = 'REDUX/APP/APP/USER_LOGGED_STATE';
 // -------------ACTIONS -----------------------
-const uploadMessages = (payload) => ({
-  type: UPLOAD_MESSAGES,
-  payload,
-});
-const fetchMessages = (payload) => ({
-  type: FETCH_MESSAGES,
+const setUserLoggedState = (payload) => ({
+  type: USER_LOGGED_STATE,
   payload,
 });
 
 // ----------- REDUCERS ----------------------
 
 const defaultValues = {
-  message: 'hello reducer',
+  userLogged: false,
 };
 
-const messagesReducer = (state = defaultValues, action) => {
+const userLoggedStateReducer = (state = defaultValues, action) => {
+  const newObj = { state };
   switch (action.type) {
-    case UPLOAD_MESSAGES:
-      return action.payload;
+    case USER_LOGGED_STATE:
+      newObj.userLogged = action.payload;
+      return newObj;
     default:
       return state;
   }
 };
 // ------------ MIDDLEWARES -------------------
-const fetchMessagesFromAPIMiddleware = (store) => (next) => (action) => {
+/*
+const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === FETCH_MESSAGES) {
     fetch('https://hello-world-back-end-api.herokuapp.com/v1/messages', {
       headers: {
@@ -37,13 +35,12 @@ const fetchMessagesFromAPIMiddleware = (store) => (next) => (action) => {
   }
   next(action);
 };
+*/
 // -------------- EXPORTS -------------------
 export {
   // -------------- reducers ---------------
-  messagesReducer,
+  userLoggedStateReducer,
   // -------------- actions ----------------+
-  uploadMessages,
-  fetchMessages,
+  setUserLoggedState,
   // ------------- middlewares -------------
-  fetchMessagesFromAPIMiddleware,
 };

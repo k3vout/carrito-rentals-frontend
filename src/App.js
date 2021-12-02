@@ -6,40 +6,48 @@ import {
   Redirect,
   NavLink,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Cars from './components/Cars';
 import NewCar from './components/NewCar';
 import DeleteCar from './components/DeleteCar';
 import MyRentals from './components/MyRentals';
 import NewRental from './components/NewRental';
+import LogIn from './components/LogIn';
 
-const App = () => (
-  <Router>
-    <NavLink activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
-    <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
-    <NavLink activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
-    <NavLink activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
-    <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
-    <Switch>
-      <Route exact path="/">
-        <Redirect to="/home" />
-      </Route>
-      <Route path="/home">
-        <Cars />
-      </Route>
-      <Route path="/newcar">
-        <NewCar />
-      </Route>
-      <Route path="/deletecar">
-        <DeleteCar />
-      </Route>
-      <Route path="/myrentals">
-        <MyRentals />
-      </Route>
-      <Route path="/newrent">
-        <NewRental />
-      </Route>
-    </Switch>
-  </Router>
-);
+const App = () => {
+  const loggedState = useSelector((state) => state.userLoggedStateReducer);
+  return (
+    loggedState.userLogged
+      ? (
+        <Router>
+          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
+          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
+          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
+          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
+          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            <Route path="/home">
+              <Cars />
+            </Route>
+            <Route path="/newcar">
+              <NewCar />
+            </Route>
+            <Route path="/deletecar">
+              <DeleteCar />
+            </Route>
+            <Route path="/myrentals">
+              <MyRentals />
+            </Route>
+            <Route path="/newrent">
+              <NewRental />
+            </Route>
+          </Switch>
+        </Router>
+      ) : <LogIn />
+  );
+};
 
 export default App;
