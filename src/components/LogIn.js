@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserLoggedState } from '../redux/app/app';
+import { logIn, setUserLoggedState } from '../redux/app/app';
 import SignUp from './SignUp';
 
 const LogIn = () => {
@@ -11,7 +11,8 @@ const LogIn = () => {
     dispatch(setUserLoggedState(true));
   };
   const openSignUpPopUp = () => {
-    setSignUpWindow(true);
+    dispatch(logIn('hunter4466'));
+    setSignUpWindow(false);
   };
   return (
     <div>

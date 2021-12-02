@@ -8,7 +8,7 @@ import {
   userLoggedStateReducer,
   // -------------- actions ----------------
   // ------------- middlewares -------------
-  // fetchMessagesFromAPIMiddleware,
+  fetchDataFromAPIMiddleware,
 } from './app/app';
 
 const reducer = combineReducers({
@@ -18,7 +18,7 @@ const reducer = combineReducers({
 
 const composedEnhancer = compose(
   // ------------ Store Middlewares -----
-  // applyMiddleware(fetchMessagesFromAPIMiddleware),
+  applyMiddleware(fetchDataFromAPIMiddleware),
   // ------------- Logger --------------
   applyMiddleware(logger),
 );
