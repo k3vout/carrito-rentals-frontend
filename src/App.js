@@ -37,11 +37,26 @@ const App = () => {
     loggedState.userLogged
       ? (
         <Router>
-          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
-          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
-          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
-          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
-          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
+          <div>
+            <img src="logo.png" alt="..." />
+            <ul>
+              <li>
+                <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
+              </li>
+            </ul>
+          </div>
           <Switch>
             <Route exact path="/">
               <Redirect to="/home" />
