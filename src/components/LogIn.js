@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn, setUserLoggedState } from '../redux/app/app';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../redux/app/app';
+import Alert from './modules/Alert';
 import SignUp from './SignUp';
 
 const LogIn = () => {
+  const alert = useSelector((state) => state.alertReducer);
   const dispatch = useDispatch();
   const [signUpOpen, setSignUpWindow] = useState(false);
+  const [username, setUsername] = useState('');
 
   const handleSubmit = () => {
-    dispatch(setUserLoggedState(true));
+    dispatch(logIn(username));
   };
   const openSignUpPopUp = () => {
-    dispatch(logIn('hunter4466'));
-    setSignUpWindow(false);
+    setSignUpWindow(true);
   };
   return (
     <div>
-      <form onSubmit={() => { handleSubmit(); }}>
-        <label htmlFor="username">
-          Username:
-          <input type="text" name="username" placeholder="Type here your username" />
-        </label>
-        <input type="submit" value="Log In" />
-      </form>
+      {alert ? <Alert message={alert} /> : false }
+      Username:
+      <input type="text" placeholder="Place you name here" onChange={(e) => setUsername(e.target.value)} />
+      <button type="button" onClick={() => { handleSubmit(); }}>Sign in</button>
       <button type="button" onClick={() => { openSignUpPopUp(); }}>SignUp</button>
       {signUpOpen ? <SignUp /> : false}
     </div>

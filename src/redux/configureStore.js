@@ -6,6 +6,7 @@ import logger from 'redux-logger';
 import {
   // -------------- reducers ---------------
   userLoggedStateReducer,
+  alertReducer,
   // -------------- actions ----------------
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
@@ -14,6 +15,7 @@ import {
 const reducer = combineReducers({
   // ------------ Store Reducers -----
   userLoggedStateReducer,
+  alertReducer,
 });
 
 const composedEnhancer = compose(

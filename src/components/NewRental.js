@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewRental = () => (
   <div>
-    This is the New Rentals View
+    This is the New Rentals
   </div>
 );
 

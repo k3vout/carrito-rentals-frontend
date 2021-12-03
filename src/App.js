@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,25 +6,42 @@ import {
   Redirect,
   NavLink,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cars from './components/Cars';
 import NewCar from './components/NewCar';
 import DeleteCar from './components/DeleteCar';
 import MyRentals from './components/MyRentals';
 import NewRental from './components/NewRental';
 import LogIn from './components/LogIn';
+import storageAvailable from './components/utilities/storage';
+import { checkToken, displayAlert, setUserLoggedState } from './redux/app/app';
 
 const App = () => {
   const loggedState = useSelector((state) => state.userLoggedStateReducer);
+  const dispatch = useDispatch();
+
+  const validateLogIn = () => {
+    if (storageAvailable('sessionStorage')) {
+      if (sessionStorage.getItem('prvTkn')) {
+        dispatch(checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
+      } else {
+        dispatch(setUserLoggedState(false));
+        dispatch(displayAlert('Please log in to continue'));
+      }
+    }
+  };
+  useEffect(() => {
+    validateLogIn();
+  }, []);
   return (
     loggedState.userLogged
       ? (
         <Router>
-          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
-          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
-          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
-          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
-          <NavLink activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
+          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/home">Cars</NavLink>
+          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newcar">New car</NavLink>
+          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/deletecar">Delete car</NavLink>
+          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/myrentals">My Rentals</NavLink>
+          <NavLink onClick={() => { validateLogIn(); }} activeClassName="pressed_link" className="unpressed_link" to="/newrent">New rental</NavLink>
           <Switch>
             <Route exact path="/">
               <Redirect to="/home" />
