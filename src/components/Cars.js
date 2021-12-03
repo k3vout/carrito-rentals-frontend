@@ -32,42 +32,42 @@ const Cars = () => {
     return (array);
   };
   return (cars ? (
-    <div>
+    <div className="pt-5 vh-100 custom-gradient justify-content-between align-content-center d-flex flex-column overflow-scroll w-100">
       <div>
-        <h1>Our Carritos</h1>
-        <p>Click on a car to see more details</p>
+        <h1 className="display-3 text-center pt-5">Our Carritos</h1>
+        <p className="text-center pb-5">Click on a car to see more details</p>
       </div>
-      <div>
-        <div>
+      <div className="carousel carousel-dark slide align-self-center custom-carousel">
+        <div className="carousel-inner pt-5">
           {grouper(cars).map((a, index) => (
             <div key={`key${index * 1}`} className="carousel-item active">
               <div className="row">
                 {a.map((b) => (
-                  <div key={b.id}>
-                    <img alt="..." src={b.image} />
-                    <h6>{b.model}</h6>
-                    <p>..........</p>
-                    <p>
+                  <div className="col-sm-4 text-center" key={b.id}>
+                    <img alt="..." src={b.image} className="d-block w-100 mx-5" />
+                    <h6 className="pt-5">{b.model}</h6>
+                    <p className="text-muted">..........</p>
+                    <p className="text-muted m-0">
                       Transmision:
                       {b.transmision}
                     </p>
-                    <p>
+                    <p className="text-muted m-0">
                       Mileage:
                       {b.mileage}
                     </p>
-                    <p>
+                    <p className="text-muted m-0">
                       Seats:
                       {b.seats_number}
                     </p>
-                    <div>
+                    <div className="d-flex justify-content-center mb-2">
                       <span>
-                        <img src="facebook.svg" alt="..." />
+                        <img src="facebook.svg" className="social-icon" alt="..." />
                       </span>
                       <span>
-                        <img src="facebook.svg" alt="..." />
+                        <img src="facebook.svg" className="social-icon" alt="..." />
                       </span>
                       <span>
-                        <img src="facebook.svg" alt="..." />
+                        <img src="facebook.svg" className="social-icon" alt="..." />
                       </span>
                     </div>
                   </div>
