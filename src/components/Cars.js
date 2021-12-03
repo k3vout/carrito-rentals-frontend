@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Carousel from 'react-bootstrap/Carousel';
 import { triggerCarList } from '../redux/app/app';
 import storageAvailable from './utilities/storage';
 
 const Cars = () => {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
   const dispatch = useDispatch();
   const cars = useSelector((data) => data.dataReducer).allCars;
   useEffect(() => {
@@ -37,70 +44,44 @@ const Cars = () => {
         <h1 className="display-3 text-center pt-5">Our Carritos</h1>
         <p className="text-center pb-5">Click on a car to see more details</p>
       </div>
-      <div className="carousel carousel-dark slide align-self-center custom-carousel">
-        <div className="carousel-inner pt-5">
-          {grouper(cars).map((a, index) => (
-            <div key={`key${index * 1}`} className="carousel-item active">
-              <div className="row">
-                {a.map((b) => (
-                  <div className="col-sm-4 text-center" key={b.id}>
-                    <img alt="..." src={b.image} className="d-block w-100 mx-5" />
-                    <h6 className="pt-5">{b.model}</h6>
-                    <p className="text-muted">..........</p>
-                    <p className="text-muted m-0">
-                      Transmision:
-                      {b.transmision}
-                    </p>
-                    <p className="text-muted m-0">
-                      Mileage:
-                      {b.mileage}
-                    </p>
-                    <p className="text-muted m-0">
-                      Seats:
-                      {b.seats_number}
-                    </p>
-                    <div className="d-flex justify-content-center mb-2">
-                      <span>
-                        <img src="facebook.svg" className="social-icon" alt="..." />
-                      </span>
-                      <span>
-                        <img src="facebook.svg" className="social-icon" alt="..." />
-                      </span>
-                      <span>
-                        <img src="facebook.svg" className="social-icon" alt="..." />
-                      </span>
-                    </div>
+      <Carousel className="carousel-dark slide align-self-center custom-carousel" activeIndex={index} onSelect={handleSelect}>
+        {grouper(cars).map((a, index) => (
+          <Carousel.Item key={`key${index * 1}`} className="pt-5">
+            <div className="row">
+              {a.map((b) => (
+                <div className="col-sm-4 text-center" key={b.id}>
+                  <img alt="..." src={b.image} className="d-block w-100 mx-5" />
+                  <h6 className="pt-5">{b.model}</h6>
+                  <p className="text-muted">..........</p>
+                  <p className="text-muted m-0">
+                    Transmision:
+                    {b.transmision}
+                  </p>
+                  <p className="text-muted m-0">
+                    Mileage:
+                    {b.mileage}
+                  </p>
+                  <p className="text-muted m-0">
+                    Seats:
+                    {b.seats_number}
+                  </p>
+                  <div className="d-flex justify-content-center mb-2">
+                    <span>
+                      <img src="facebook.svg" className="social-icon" alt="..." />
+                    </span>
+                    <span>
+                      <img src="facebook.svg" className="social-icon" alt="..." />
+                    </span>
+                    <span>
+                      <img src="facebook.svg" className="social-icon" alt="..." />
+                    </span>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon bg-dark rounded"
-            aria-hidden="true"
-          />
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon bg-dark rounded"
-            aria-hidden="true"
-          />
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
       <div className="align-self-bottom mx-5">
         <h5 className="text-center pt-4">Drive safe</h5>
         <p className="text-center pb-4">
