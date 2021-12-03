@@ -7,6 +7,7 @@ import {
   // -------------- reducers ---------------
   userLoggedStateReducer,
   alertReducer,
+  dataReducer,
   // -------------- actions ----------------
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   // ------------ Store Reducers -----
   userLoggedStateReducer,
   alertReducer,
+  dataReducer,
 });
 
 const composedEnhancer = compose(
