@@ -49,8 +49,8 @@ const Cars = () => {
           <Carousel.Item key={`key${index * 1}`} className="pt-5">
             <div className="row">
               {a.map((b) => (
-                <div className="col-sm-4 text-center" key={b.id}>
-                  <img alt="..." src={b.image} className="d-block w-100 mx-5" />
+                <div className="col-lg-auto col-md-12 col-sm-12 text-center d-flex flex-column" key={b.id}>
+                  <img alt="..." src={b.image} className="d-block mx-5 thumbnail align-self-center" />
                   <h6 className="pt-5">{b.model}</h6>
                   <p className="text-muted">..........</p>
                   <p className="text-muted m-0">
@@ -65,7 +65,7 @@ const Cars = () => {
                     Seats:
                     {b.seats_number}
                   </p>
-                  <div className="d-flex justify-content-center mb-2">
+                  <div className="d-flex justify-content-center mb-5">
                     <span>
                       <img src="facebook.svg" className="social-icon" alt="..." />
                     </span>
