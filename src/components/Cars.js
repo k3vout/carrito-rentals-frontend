@@ -54,15 +54,15 @@ const Cars = () => {
                   <h6 className="pt-5">{b.model}</h6>
                   <p className="text-muted">..........</p>
                   <p className="text-muted m-0">
-                    Transmision:
+                    Transmision: &nbsp;
                     {b.transmision}
                   </p>
                   <p className="text-muted m-0">
-                    Mileage:
+                    Mileage: &nbsp;
                     {b.mileage}
                   </p>
                   <p className="text-muted m-0">
-                    Seats:
+                    Seats: &nbsp;
                     {b.seats_number}
                   </p>
                   <div className="d-flex justify-content-center mb-5">
