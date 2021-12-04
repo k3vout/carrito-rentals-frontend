@@ -1,43 +1,44 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Table from 'react-bootstrap/Table';
 
 const SingleCar = () => {
   const data = useSelector((data) => data.dataReducer).singleCar;
   return (data
     ? (
-      <div>
-        <div>
-          <h2>{data.model}</h2>
-          <p>..........</p>
-          <div>
-            <table>
+      <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-gradient">
+        <div className="p-5">
+          <h2 className="align-self-end pt-5 text-end m-0">{data.model}</h2>
+          <p className="text-muted text-end">..........</p>
+          <div className="d-flex">
+            <Table className="table w-auto ms-auto table-borderless">
               <tbody>
                 <tr>
-                  <th>Transmision: </th>
-                  <td>{data.transmision}</td>
+                  <th className="text-muted">Transmision: </th>
+                  <td className="text-muted">{data.transmision}</td>
+                </tr>
+                <tr className="table-light">
+                  <th className="text-muted">Mileage: </th>
+                  <td className="text-muted">{data.mileage}</td>
                 </tr>
                 <tr>
-                  <th>Mileage: </th>
-                  <td>{data.mileage}</td>
+                  <th className="text-muted">Seats:</th>
+                  <td className="text-muted">{data.seats_number}</td>
                 </tr>
-                <tr>
-                  <th>Seats:</th>
-                  <td>{data.seats_number}</td>
-                </tr>
-                <tr>
-                  <th>Storage:</th>
-                  <td>
+                <tr className="table-light">
+                  <th className="text-muted">Storage:</th>
+                  <td className="text-muted">
                     {data.bags_number}
                     {' bags'}
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
           </div>
         </div>
-        <div>
+        <div className="text-center">
           <img
-            src="carbig.png"
+            src={data.image}
             id="slide"
             className="img-fluid car-big-pic"
             alt="..."

@@ -50,7 +50,7 @@ const App = () => {
                 onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
               >
                 <ul className="nav rounded-start flex-column fw-bold">
-                  <li>
+                  <li className="nav-link link-dark">
                     <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none" to="/home">Cars</NavLink>
                   </li>
                   <li className="nav-link link-dark">
