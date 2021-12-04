@@ -1,12 +1,15 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'react-bootstrap/Carousel';
-import { triggerCarList } from '../redux/app/app';
+import { useHistory } from 'react-router';
+import { triggerCarList, triggerSingleCar } from '../redux/app/app';
 import storageAvailable from './utilities/storage';
 
 const Cars = () => {
   const [index, setIndex] = useState(0);
-
+  const history = useHistory();
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
@@ -38,6 +41,15 @@ const Cars = () => {
     }
     return (array);
   };
+  const handleCarClick = (uid) => {
+    if (storageAvailable('sessionStorage')) {
+      if (sessionStorage.getItem('prvTkn')) {
+        dispatch(triggerSingleCar({ token: JSON.parse(sessionStorage.getItem('prvTkn')), id: uid }));
+      }
+    }
+    const path = '/detail';
+    history.push(path);
+  };
   return (cars ? (
     <div className="pt-5 vh-100 custom-gradient justify-content-between align-content-center d-flex flex-column overflow-scroll w-100">
       <div>
@@ -49,7 +61,7 @@ const Cars = () => {
           <Carousel.Item key={`key${index * 1}`} className="pt-5">
             <div className="row">
               {a.map((b) => (
-                <div className="col-lg-auto col-md-12 col-sm-12 text-center d-flex flex-column" key={b.id}>
+                <div onClick={() => { handleCarClick(b.id); }} className="col-lg-auto col-md-12 col-sm-12 text-center d-flex flex-column" key={b.id}>
                   <img alt="..." src={b.image} className="d-block mx-5 thumbnail align-self-center" />
                   <h6 className="pt-5">{b.model}</h6>
                   <p className="text-muted">..........</p>

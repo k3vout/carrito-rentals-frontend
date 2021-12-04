@@ -11,6 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Cars from './components/Cars';
 import NewCar from './components/NewCar';
+import SingleCar from './components/SingleCar';
 import DeleteCar from './components/DeleteCar';
 import MyRentals from './components/MyRentals';
 import NewRental from './components/NewRental';
@@ -107,6 +108,9 @@ const App = () => {
               </Route>
               <Route path="/newrent">
                 <NewRental />
+              </Route>
+              <Route path="/detail">
+                <SingleCar />
               </Route>
             </Switch>
           </div>

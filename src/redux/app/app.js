@@ -9,6 +9,7 @@ const CHECK_TOKEN = 'REDUX/APP/APP/CHECK_TOKEN';
 const UPDATE_ALL_CARS = 'REDUX/APP/APP/UPDATE_ALL_CARS';
 const UPDATE_SINGLE_CAR = 'REDUX/APP/APP/UPDATE_SINGLE_CAR';
 const TRIGGER_CAR_LIST = 'REDUX/APP/APP/TRIGGER_CAR_LIST';
+const TRIGGER_SINGLE_CAR = 'REDUX/APP/APP/TRIGGER_SINGLE_CAR';
 // -------------ACTIONS -----------------------
 const setUserLoggedState = (payload) => ({
   type: USER_LOGGED_STATE,
@@ -32,6 +33,14 @@ const checkToken = (payload) => ({
 });
 const triggerCarList = (payload) => ({
   type: TRIGGER_CAR_LIST,
+  payload,
+});
+const triggerSingleCar = (payload) => ({
+  type: TRIGGER_SINGLE_CAR,
+  payload,
+});
+const updateSingleCar = (payload) => ({
+  type: UPDATE_SINGLE_CAR,
   payload,
 });
 const updateAllCars = (payload) => ({
@@ -68,7 +77,10 @@ const dataDefaultState = {
   singleCar: false,
 };
 const dataReducer = (state = dataDefaultState, action) => {
-  const newObj = { state };
+  const newObj = {
+    allCars: state.allCars,
+    singleCar: state.single,
+  };
   switch (action.type) {
     case UPDATE_ALL_CARS:
       newObj.allCars = action.payload;
@@ -119,6 +131,10 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   const dispatchToDataStorage = (json) => {
     store.dispatch(updateAllCars(json));
   };
+  const dispatchToDataStorageTwo = (json) => {
+    console.log(json);
+    store.dispatch(updateSingleCar(json));
+  };
   // ------------ middleware actions ----------------------------
   if (action.type === CHECK_TOKEN) {
     fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, action.payload);
@@ -138,6 +154,16 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     }).then((response) => response.json())
       .then((json) => dispatchToDataStorage(json));
   }
+  if (action.type === TRIGGER_SINGLE_CAR) {
+    fetch(`${APIurl}/v1/cars/${action.payload.id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: action.payload.token,
+      },
+    }).then((response) => response.json())
+      .then((json) => dispatchToDataStorageTwo(json));
+  }
   next(action);
 };
 
@@ -154,6 +180,7 @@ export {
   checkToken,
   displayAlert,
   triggerCarList,
+  triggerSingleCar,
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
 };
