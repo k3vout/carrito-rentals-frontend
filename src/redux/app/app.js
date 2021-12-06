@@ -10,6 +10,7 @@ const UPDATE_ALL_CARS = 'REDUX/APP/APP/UPDATE_ALL_CARS';
 const UPDATE_SINGLE_CAR = 'REDUX/APP/APP/UPDATE_SINGLE_CAR';
 const TRIGGER_CAR_LIST = 'REDUX/APP/APP/TRIGGER_CAR_LIST';
 const TRIGGER_SINGLE_CAR = 'REDUX/APP/APP/TRIGGER_SINGLE_CAR';
+const ADD_NEW_CAR = 'REDUX/APP/APP/ADD_NEW_CAR';
 // -------------ACTIONS -----------------------
 const setUserLoggedState = (payload) => ({
   type: USER_LOGGED_STATE,
@@ -45,6 +46,10 @@ const updateSingleCar = (payload) => ({
 });
 const updateAllCars = (payload) => ({
   type: UPDATE_ALL_CARS,
+  payload,
+});
+const addNewCar = (payload) => ({
+  type: ADD_NEW_CAR,
   payload,
 });
 
@@ -114,6 +119,7 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     if (json.token) {
       if (storageAvailable('sessionStorage')) {
         sessionStorage.setItem('prvTkn', JSON.stringify(json.token));
+        sessionStorage.setItem('usrId', JSON.stringify(json.id));
       }
       store.dispatch(setUserLoggedState(true));
     } else {
@@ -139,11 +145,9 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === CHECK_TOKEN) {
     fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, action.payload);
   }
-
   if (action.type === LOG_IN) {
     fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
   }
-
   if (action.type === TRIGGER_CAR_LIST) {
     fetch(`${APIurl}/v1/cars`, {
       method: 'GET',
@@ -157,6 +161,26 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === TRIGGER_SINGLE_CAR) {
     fetch(`${APIurl}/v1/cars/${action.payload.id}`, {
       method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: action.payload.token,
+      },
+    }).then((response) => response.json())
+      .then((json) => dispatchToDataStorageTwo(json));
+  }
+  if (action.type === ADD_NEW_CAR) {
+    fetch(`${APIurl}/v1/cars`, {
+      method: 'POST',
+      body: JSON.stringify({
+        brand: action.payload.brand,
+        model: action.payload.model,
+        seats_number: action.payload.seats_number,
+        transmision: action.payload.transmision,
+        mileage: action.payload.mileage,
+        image: action.payload.image,
+        price_for_day: action.payload.price_for_day,
+        bags_number: action.payload.bags_number,
+      }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
         Authorization: action.payload.token,
@@ -181,6 +205,7 @@ export {
   displayAlert,
   triggerCarList,
   triggerSingleCar,
+  addNewCar,
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
 };

@@ -32,6 +32,14 @@ const SingleCar = () => {
                     {' bags'}
                   </td>
                 </tr>
+                <tr>
+                  <th className="text-muted">Price:</th>
+                  <td className="text-muted">
+                    US$
+                    {' '}
+                    {data.price_for_day}
+                  </td>
+                </tr>
               </tbody>
             </Table>
           </div>
