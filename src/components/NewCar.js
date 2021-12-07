@@ -39,7 +39,7 @@ const NewCar = () => {
   const appendNotification = (id, string) => {
     const parent = document.getElementById(id);
     const newAdvice = document.createElement('p');
-    newAdvice.className = 'validation_style';
+    newAdvice.className = 'text-danger';
     newAdvice.innerHTML = string;
     newAdvice.id = 'add_new_car_notification';
     parent.appendChild(newAdvice);
@@ -122,88 +122,155 @@ const NewCar = () => {
   };
 
   return (
-    <div>
+    <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-gradient custom-bg overflow-scroll">
       <div>
-        <h1>Rent your Carrito</h1>
-        <p>Add your car details and start earning money</p>
+        <h1 className="display-3 text-center pt-5">Rent your Carrito</h1>
+        <p className="text-center pb-5 px-3">Add your car details and start earning money</p>
       </div>
-      <div>
+      <div className="text-center d-flex flex-column mx-auto form-width px-5 custom-position">
         <div>
-          <div>
-            <div>
-              <p>Brand:</p>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Brand:
+              </div>
             </div>
-            <div id="brand_field">
-              <input onChange={(e) => { handleInputChange('brand', e.target.value); }} type="text" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Model:</p>
-            </div>
-            <div id="model_field">
-              <input onChange={(e) => { handleInputChange('model', e.target.value); }} type="text" />
+            <div className="col-auto" id="brand_field">
+              <input
+                onChange={(e) => { handleInputChange('brand', e.target.value); }}
+                type="text"
+                className="form-control"
+              />
             </div>
           </div>
-          <div>
-            <div>
-              <p>Seats Number:</p>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Model:
+              </div>
             </div>
-            <div id="seats_number_field">
-              <input onChange={(e) => { handleInputChange('seats_number', e.target.value); }} type="number" />
+            <div className="col-auto" id="model_field">
+              <input
+                onChange={(e) => { handleInputChange('model', e.target.value); }}
+                type="text"
+                className="form-control"
+              />
             </div>
           </div>
-          <div>
-            <div>
-              <p>Transmision:</p>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Seats Number:
+              </div>
             </div>
-            <div id="transmision_field">
-              <select onChange={(e) => { handleInputChange('transmision', e.target.value); }}>
+            <div className="col-auto" id="seats_number_field">
+              <input
+                onChange={(e) => { handleInputChange('seats_number', e.target.value); }}
+                type="number"
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Transmision:
+              </div>
+            </div>
+            <div className="col-auto" id="transmision_field">
+              <select
+                onChange={(e) => { handleInputChange('transmision', e.target.value); }}
+                className="form-select form-control"
+              >
                 <option value="" disabled selected>Choose an option</option>
                 <option value="Automatic">Automatic</option>
                 <option value="Manual">Manual</option>
               </select>
             </div>
           </div>
-          <div>
-            <div>
-              <p>Mileage:</p>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Mileage:
+              </div>
             </div>
-            <div id="mileage_field">
-              <input id="mileage_input" min="0" onChange={(e) => { handleInputChange('mileage', e.target.value); }} type="number" />
-              <input min="0" checked={checkBox} onChange={() => { handleCheckBoxChange('mileage'); }} type="checkbox" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Image:</p>
-            </div>
-            <div id="image_field">
-              <input onChange={(e) => { handleInputChange('image', e.target.value); }} type="text" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Price for day:</p>
-            </div>
-            <div id="price_for_day_field">
-              <input min="0" onChange={(e) => { handleInputChange('price_for_day', e.target.value); }} type="number" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Bags Number:</p>
-            </div>
-            <div id="bags_number_field">
-              <input min="0" onChange={(e) => { handleInputChange('bags_number', e.target.value); }} type="number" />
+            <div className="col-auto" id="mileage_field">
+              <input
+                id="mileage_input"
+                min="0"
+                onChange={(e) => { handleInputChange('mileage', e.target.value); }}
+                type="number"
+                className="form-control"
+              />
+              <div className="text-end">
+                <input
+                  id="unlimitedBtn"
+                  min="0"
+                  checked={checkBox}
+                  onChange={() => { handleCheckBoxChange('mileage'); }}
+                  type="checkbox"
+                  className="form-check-input me-2 ms-auto"
+                />
+                Unlimited
+              </div>
             </div>
           </div>
-          <div>
-            <button type="button" onClick={() => { handleSubmit(); }}>Submit</button>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Image:
+              </div>
+            </div>
+            <div className="col-auto" id="image_field">
+              <input
+                onChange={(e) => { handleInputChange('image', e.target.value); }}
+                type="text"
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Price for day:
+              </div>
+            </div>
+            <div className="col-auto" id="price_for_day_field">
+              <input
+                min="0"
+                onChange={(e) => { handleInputChange('price_for_day', e.target.value); }}
+                type="number"
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Bags Number:
+              </div>
+            </div>
+            <div className="col-auto" id="bags_number_field">
+              <input
+                min="0"
+                onChange={(e) => { handleInputChange('bags_number', e.target.value); }}
+                type="number"
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="text-center py-3">
+            <button
+              type="button"
+              onClick={() => { handleSubmit(); }}
+              className="btn btn-dark btn-sm"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
-      <p>
+      <p className="creators text-muted text-center">
         <small>Created By @sevinchek @hunter4466 @the-catalystmc @smunozmo</small>
       </p>
     </div>

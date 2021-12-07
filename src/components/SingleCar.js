@@ -8,7 +8,7 @@ const SingleCar = () => {
     ? (
       <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-gradient">
         <div className="p-5">
-          <h2 className="align-self-end pt-5 text-end m-0">{data.model}</h2>
+          <h2 className="align-self-end pt-5 text-end m-0">{`${data.brand} ${data.model}`}</h2>
           <p className="text-muted text-end">..........</p>
           <div className="d-flex">
             <Table className="table w-auto ms-auto table-borderless">
