@@ -147,7 +147,7 @@ const NewRental = () => {
                   <div className="question_frame">
                     <input className="address_text_area" {...getInputProps({ placeholder: 'City' })} />
                     <div>
-                      {loading ? <div>...cargando</div> : null}
+                      {loading ? <div>...loading</div> : null}
 
                       {suggestions.map((suggestion) => {
                         const style = {
