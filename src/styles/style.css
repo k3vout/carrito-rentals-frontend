@@ -78,3 +78,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.suggestion_list {
+  max-width: 195px;
+}

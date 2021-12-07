@@ -106,20 +106,21 @@ const NewRental = () => {
   return (
     <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-gradient custom-bg">
       <div>
-        <h1>New rental</h1>
-        <button type="button" onClick={() => { console.log(inputs); }}>Click me</button>
-        <p>
+        <h1 className="display-3 text-center pt-5">New rental</h1>
+        <p className="text-center pb-5 px-3">
           Schedule your carrito
         </p>
       </div>
-      <div>
-        <form>
-          <div>
-            <div>
-              <p>Car:</p>
+      <div className="text-center d-flex flex-column mx-auto form-width px-5">
+        <div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Car:
+              </div>
             </div>
-            <div id="car_id_field">
-              <select onChange={(e) => { handleInputChange('car_id', e.target.value); }}>
+            <div className="col-auto" id="car_id_field">
+              <select onChange={(e) => { handleInputChange('car_id', e.target.value); }} className="form-select form-control">
                 <option selected disabled>Choose a model</option>
                 {cars ? (cars.map((a) => (
                   <option key={a.id} value={a.id}>
@@ -131,11 +132,41 @@ const NewRental = () => {
               </select>
             </div>
           </div>
-          <div>
-            <div>
-              <p>City:</p>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                Start Date:
+              </div>
             </div>
-            <div id="city_field">
+            <div className="col-auto" id="start_date_field">
+              <input
+                type="date"
+                onChange={(e) => { handleInputChange('start_date', e.target.value); }}
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                End Date:
+              </div>
+            </div>
+            <div className="col-auto" id="end_date_field">
+              <input
+                type="date"
+                onChange={(e) => { handleInputChange('end_date', e.target.value); }}
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="row g-3 justify-content-between py-1">
+            <div className="col-auto">
+              <div className="col-form-label fw-bold">
+                City:
+              </div>
+            </div>
+            <div className="col-auto" id="city_field">
               <PlacesAutocomplete
                 value={cityAdd}
                 onChange={setCityAdd}
@@ -145,17 +176,16 @@ const NewRental = () => {
                   getInputProps, suggestions, getSuggestionItemProps, loading,
                 }) => (
                   <div className="question_frame">
-                    <input className="address_text_area" {...getInputProps({ placeholder: 'City' })} />
-                    <div>
+                    <input className="address_text_area form-control" {...getInputProps({ placeholder: 'City' })} />
+                    <div className="rounded-bottom shadow m-0 overflow-hidden">
                       {loading ? <div>...loading</div> : null}
-
                       {suggestions.map((suggestion) => {
                         const style = {
                           backgroundColor: suggestion.active ? '#FFC107' : '#fff',
                         };
                         return (
                           <div
-                            className="suggestion_list"
+                            className="suggestion_list py-2 border border-1"
                             key={miniIdGenerator()}
                             {...getSuggestionItemProps(
                               suggestion,
@@ -172,26 +202,16 @@ const NewRental = () => {
               </PlacesAutocomplete>
             </div>
           </div>
-          <div>
-            <div>
-              <p>Start Date:</p>
-            </div>
-            <div id="start_date_field">
-              <input type="date" onChange={(e) => { handleInputChange('start_date', e.target.value); }} />
-            </div>
+          <div className="text-center py-3">
+            <button
+              type="button"
+              onClick={() => { handleSubmit(); }}
+              className="btn btn-dark btn-sm"
+            >
+              Submit
+            </button>
           </div>
-          <div>
-            <div>
-              <p>End Date:</p>
-            </div>
-            <div id="end_date_field">
-              <input type="date" onChange={(e) => { handleInputChange('end_date', e.target.value); }} />
-            </div>
-          </div>
-          <div>
-            <button type="button" onClick={() => { handleSubmit(); }}>Submit</button>
-          </div>
-        </form>
+        </div>
       </div>
       <p>
         <small>
