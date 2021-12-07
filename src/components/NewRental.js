@@ -121,7 +121,7 @@ const NewRental = () => {
             </div>
             <div className="col-auto" id="car_id_field">
               <select onChange={(e) => { handleInputChange('car_id', e.target.value); }} className="form-select form-control">
-                <option selected disabled>Choose a model</option>
+                <option selected disabled>Choose a model &nbsp; &nbsp; &nbsp;</option>
                 {cars ? (cars.map((a) => (
                   <option key={a.id} value={a.id}>
                     {a.brand}
