@@ -213,7 +213,7 @@ const NewRental = () => {
           </div>
         </div>
       </div>
-      <p>
+      <p className="creators text-muted text-center">
         <small>
           Created By @sevinchek @hunter4466 @the-catalystmc @smunozmo
         </small>
