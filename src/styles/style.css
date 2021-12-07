@@ -3,14 +3,14 @@ body {
 }
 
 .custom-gradient {
-  background: rgb(242, 242, 242);
-  background: linear-gradient(
-    360deg,
-    rgba(242, 242, 242, 1) 0%,
-    rgba(255, 255, 255, 0) 29%,
-    rgba(255, 255, 255, 0) 90%,
-    rgba(147, 147, 147, 0.17970938375350143) 100%
-  );
+  background:
+    linear-gradient(
+      360deg,
+      rgba(242, 242, 242, 1) 0%,
+      rgba(255, 255, 255, 0) 29%,
+      rgba(255, 255, 255, 0) 90%,
+      rgba(147, 147, 147, 0.17970938375350143) 100%
+    );
 }
 
 .custom-carousel {
@@ -70,13 +70,13 @@ body {
   max-width: 700px;
 }
 
-.custom-position::-webkit-scrollbar {
-  display: none;
-}
-
 .custom-position {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.custom-position::-webkit-scrollbar {
+  display: none;
 }
 
 .suggestion_list {
