@@ -34,6 +34,12 @@ const App = () => {
       }
     }
   };
+  const handleLogOutBtn = () => {
+    if (storageAvailable('sessionStorage')) {
+      sessionStorage.removeItem('prvTkn');
+    }
+    window.location.reload();
+  };
   useEffect(() => {
     validateLogIn();
   }, []);
@@ -114,7 +120,7 @@ const App = () => {
               </Route>
             </Switch>
           </div>
-          <Button className="position-absolute top-0 end-0 m-3 btn-sm" variant="outline-secondary">Log Out</Button>
+          <Button onClick={() => { handleLogOutBtn(); }} className="position-absolute top-0 end-0 m-3 btn-sm" variant="outline-secondary">Log Out</Button>
         </Router>
       ) : <LogIn />
   );
