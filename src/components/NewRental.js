@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
-import { addNewRent, checkToken, displayAlert, setUserLoggedState, triggerCarList } from '../redux/app/app';
+import {
+  addNewRent,
+  checkToken,
+  displayAlert,
+  setUserLoggedState,
+  triggerCarList,
+} from '../redux/app/app';
 import { miniIdGenerator } from './utilities/idgen';
 import storageAvailable from './utilities/storage';
 
@@ -59,11 +65,11 @@ const NewRental = () => {
     }
     if (inputs.start_date.length < 1) {
       validation = false;
-      appendNotification('start_date_field', '');
+      appendNotification('start_date_field', 'Please Choose a start date');
     }
     if (inputs.end_date.length < 1) {
       validation = false;
-      appendNotification('end_date_field', 'Transmision option must be choose');
+      appendNotification('end_date_field', 'Please Choose an end date');
     }
     if (validation) {
       return true;
@@ -87,7 +93,7 @@ const NewRental = () => {
         if (sessionStorage.getItem('prvTkn')) {
           newObj.token = JSON.parse(sessionStorage.getItem('prvTkn'));
           dispatch(checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
-          const path = '/home';
+          const path = '/myrentals';
           history.push(path);
           dispatch(addNewRent(newObj));
         } else {

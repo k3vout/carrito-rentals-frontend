@@ -95,11 +95,13 @@ const alertReducer = (state = false, action) => {
 const dataDefaultState = {
   allCars: false,
   singleCar: false,
+  rentalList: false,
 };
 const dataReducer = (state = dataDefaultState, action) => {
   const newObj = {
     allCars: state.allCars,
     singleCar: state.single,
+    rentalList: state.rentalList,
   };
   switch (action.type) {
     case UPDATE_ALL_CARS:
@@ -107,6 +109,9 @@ const dataReducer = (state = dataDefaultState, action) => {
       return newObj;
     case UPDATE_SINGLE_CAR:
       newObj.singleCar = action.payload;
+      return newObj;
+    case UPDATE_RENTAL_LIST:
+      newObj.rentalList = action.payload;
       return newObj;
     default:
       return state;
@@ -117,9 +122,9 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   // ------------- middleware parameters ------------
   const APIurl = 'https://carrito-rentals-backend.herokuapp.com';
   // ------------- middleware functions -------------
-  const fetchUrl = (url, endpoint, httpmethod, callback, auth = '') => {
+  const fetchUrl = (url, endpoint, httpMethod, callback, auth = '') => {
     fetch(`${url}${endpoint}`, {
-      method: httpmethod,
+      method: httpMethod,
       body: JSON.stringify({
         username: action.payload,
       }),
@@ -163,7 +168,14 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
   }
   if (action.type === TRIGGER_RENTALS_LIST) {
-    fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
+    fetch(`${APIurl}/v1/rentals`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: action.payload,
+      },
+    }).then((response) => response.json())
+      .then((json) => store.dispatch(updateRentalsList(json)));
   }
   if (action.type === TRIGGER_CAR_LIST) {
     fetch(`${APIurl}/v1/cars`, {
