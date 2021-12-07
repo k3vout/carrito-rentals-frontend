@@ -124,7 +124,6 @@ const NewCar = () => {
   return (
     <div>
       <div>
-        <button type="button" onClick={() => { console.log(inputs); }}>Click me</button>
         <h1>Rent your Carrito</h1>
         <p>Add your car details and start earning money</p>
       </div>

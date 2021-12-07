@@ -11,6 +11,9 @@ const UPDATE_SINGLE_CAR = 'REDUX/APP/APP/UPDATE_SINGLE_CAR';
 const TRIGGER_CAR_LIST = 'REDUX/APP/APP/TRIGGER_CAR_LIST';
 const TRIGGER_SINGLE_CAR = 'REDUX/APP/APP/TRIGGER_SINGLE_CAR';
 const ADD_NEW_CAR = 'REDUX/APP/APP/ADD_NEW_CAR';
+const ADD_NEW_RENT = 'REDUX/APP/APP/ADD_NEW_RENT';
+const TRIGGER_RENTALS_LIST = 'REDUX/APP/APP/TRIGGER_RENTALS_LIST';
+const UPDATE_RENTAL_LIST = 'REDUX/APP/APP/UPDATE_RENTAL_LIST';
 // -------------ACTIONS -----------------------
 const setUserLoggedState = (payload) => ({
   type: USER_LOGGED_STATE,
@@ -50,6 +53,18 @@ const updateAllCars = (payload) => ({
 });
 const addNewCar = (payload) => ({
   type: ADD_NEW_CAR,
+  payload,
+});
+const addNewRent = (payload) => ({
+  type: ADD_NEW_RENT,
+  payload,
+});
+const triggerRentalsList = (payload) => ({
+  type: TRIGGER_RENTALS_LIST,
+  payload,
+});
+const updateRentalsList = (payload) => ({
+  type: UPDATE_RENTAL_LIST,
   payload,
 });
 
@@ -138,7 +153,6 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     store.dispatch(updateAllCars(json));
   };
   const dispatchToDataStorageTwo = (json) => {
-    console.log(json);
     store.dispatch(updateSingleCar(json));
   };
   // ------------ middleware actions ----------------------------
@@ -146,6 +160,9 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, action.payload);
   }
   if (action.type === LOG_IN) {
+    fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
+  }
+  if (action.type === TRIGGER_RENTALS_LIST) {
     fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
   }
   if (action.type === TRIGGER_CAR_LIST) {
@@ -185,8 +202,22 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
         'Content-type': 'application/json; charset=UTF-8',
         Authorization: action.payload.token,
       },
-    }).then((response) => response.json())
-      .then((json) => dispatchToDataStorageTwo(json));
+    }).then((response) => response.json());
+  }
+  if (action.type === ADD_NEW_RENT) {
+    fetch(`${APIurl}/v1/rentals`, {
+      method: 'POST',
+      body: JSON.stringify({
+        car_id: action.payload.car_id,
+        city: action.payload.city,
+        start_date: action.payload.start_date,
+        end_date: action.payload.end_date,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: action.payload.token,
+      },
+    }).then((response) => response.json());
   }
   next(action);
 };
@@ -205,7 +236,9 @@ export {
   displayAlert,
   triggerCarList,
   triggerSingleCar,
+  triggerRentalsList,
   addNewCar,
+  addNewRent,
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
 };
