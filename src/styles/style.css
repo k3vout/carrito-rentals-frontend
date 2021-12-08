@@ -1,0 +1,84 @@
+body {
+  min-height: 100vh;
+}
+
+.custom-gradient {
+  background:
+    linear-gradient(
+      360deg,
+      rgba(242, 242, 242, 1) 0%,
+      rgba(255, 255, 255, 0) 29%,
+      rgba(255, 255, 255, 0) 90%,
+      rgba(147, 147, 147, 0.17970938375350143) 100%
+    );
+}
+
+.custom-carousel {
+  max-width: 70vw;
+}
+
+.carousel-control {
+  padding-top: 10%;
+  width: 5%;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  background-color: skyblue;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+}
+
+.social-icon {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  filter: invert(65%);
+}
+
+.creators {
+  font-size: 12px;
+}
+
+.car-big-pic {
+  /* padding-top: 10vh; */
+  max-height: 40vh;
+}
+
+.car-details-table {
+  /* width: 220px; */
+}
+
+.carrito-splash-pic {
+  max-height: 40vh;
+  margin-top: 16vh;
+}
+
+.username {
+  max-width: 220px;
+}
+
+.custom-bg {
+  background-image: url("../images/assets/carrito-background.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.form-width {
+  max-width: 700px;
+}
+
+.custom-position {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-position::-webkit-scrollbar {
+  display: none;
+}
+
+.suggestion_list {
+  max-width: 195px;
+}
