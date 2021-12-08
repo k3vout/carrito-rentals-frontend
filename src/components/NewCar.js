@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import {
-  addNewCar,
-  checkToken,
-  displayAlert,
-  setUserLoggedState,
-} from '../redux/app/app';
+import { actions } from '../redux/app/app';
 import storageAvailable from './utilities/storage';
 
 const NewCar = () => {
@@ -99,13 +94,13 @@ const NewCar = () => {
       if (storageAvailable('sessionStorage')) {
         if (sessionStorage.getItem('prvTkn')) {
           newObj.token = JSON.parse(sessionStorage.getItem('prvTkn'));
-          dispatch(checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
+          dispatch(actions.checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
           const path = '/home';
           history.push(path);
-          dispatch(addNewCar(newObj));
+          dispatch(actions.addNewCar(newObj));
         } else {
-          dispatch(setUserLoggedState(false));
-          dispatch(displayAlert('Please log in to continue'));
+          dispatch(actions.setUserLoggedState(false));
+          dispatch(actions.displayAlert('Please log in to continue'));
         }
       }
     }

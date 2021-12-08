@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'react-bootstrap/Carousel';
 import { useHistory } from 'react-router';
-import { triggerCarList, triggerSingleCar } from '../redux/app/app';
+import { actions } from '../redux/app/app';
 import storageAvailable from './utilities/storage';
 
 const Cars = () => {
@@ -19,7 +19,7 @@ const Cars = () => {
   useEffect(() => {
     if (storageAvailable('sessionStorage')) {
       if (sessionStorage.getItem('prvTkn')) {
-        dispatch(triggerCarList(JSON.parse(sessionStorage.getItem('prvTkn'))));
+        dispatch(actions.triggerCarList(JSON.parse(sessionStorage.getItem('prvTkn'))));
       }
     }
   }, []);
@@ -44,7 +44,7 @@ const Cars = () => {
   const handleCarClick = (uid) => {
     if (storageAvailable('sessionStorage')) {
       if (sessionStorage.getItem('prvTkn')) {
-        dispatch(triggerSingleCar({ token: JSON.parse(sessionStorage.getItem('prvTkn')), id: uid }));
+        dispatch(actions.triggerSingleCar({ token: JSON.parse(sessionStorage.getItem('prvTkn')), id: uid }));
       }
     }
     const path = '/detail';

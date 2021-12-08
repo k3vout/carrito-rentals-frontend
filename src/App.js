@@ -17,7 +17,7 @@ import MyRentals from './components/MyRentals';
 import NewRental from './components/NewRental';
 import LogIn from './components/LogIn';
 import storageAvailable from './components/utilities/storage';
-import { checkToken, displayAlert, setUserLoggedState } from './redux/app/app';
+import { actions } from './redux/app/app';
 import logo from './images/assets/logo.png';
 
 const App = () => {
@@ -27,10 +27,10 @@ const App = () => {
   const validateLogIn = () => {
     if (storageAvailable('sessionStorage')) {
       if (sessionStorage.getItem('prvTkn')) {
-        dispatch(checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
+        dispatch(actions.checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
       } else {
-        dispatch(setUserLoggedState(false));
-        dispatch(displayAlert('Please log in to continue'));
+        dispatch(actions.setUserLoggedState(false));
+        dispatch(actions.displayAlert('Please log in to continue'));
       }
     }
   };
@@ -42,6 +42,12 @@ const App = () => {
   };
   useEffect(() => {
     validateLogIn();
+    if (storageAvailable('sessionStorage')) {
+      if (sessionStorage.getItem('prvTkn')) {
+        const token = JSON.parse(sessionStorage.getItem('prvTkn'));
+        dispatch(actions.triggerCarList(token));
+      }
+    }
   }, []);
   return (
     loggedState.userLogged
@@ -53,7 +59,6 @@ const App = () => {
               <Nav
                 activeKey="/home"
                 className="flex-column"
-                onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
               >
                 <ul className="nav rounded-start flex-column fw-bold">
                   <li className="nav-link link-dark">

@@ -1,72 +1,115 @@
+import fetchUrl from '../../components/utilities/fetcher';
 import storageAvailable from '../../components/utilities/storage';
 
 // --------- PATHS ------------------------------
-const USER_LOGGED_STATE = 'REDUX/APP/APP/USER_LOGGED_STATE';
-const LOG_IN = 'REDUX/APP/APP/LOG_IN';
-const SIGN_UP = 'REDUX/APP/APP/SIGN_UP';
-const DISPLAY_ALERT = 'REDUX/APP/APP/DISPLAY_ALERT';
-const CHECK_TOKEN = 'REDUX/APP/APP/CHECK_TOKEN';
-const UPDATE_ALL_CARS = 'REDUX/APP/APP/UPDATE_ALL_CARS';
-const UPDATE_SINGLE_CAR = 'REDUX/APP/APP/UPDATE_SINGLE_CAR';
-const TRIGGER_CAR_LIST = 'REDUX/APP/APP/TRIGGER_CAR_LIST';
-const TRIGGER_SINGLE_CAR = 'REDUX/APP/APP/TRIGGER_SINGLE_CAR';
-const ADD_NEW_CAR = 'REDUX/APP/APP/ADD_NEW_CAR';
-const ADD_NEW_RENT = 'REDUX/APP/APP/ADD_NEW_RENT';
-const TRIGGER_RENTALS_LIST = 'REDUX/APP/APP/TRIGGER_RENTALS_LIST';
-const UPDATE_RENTAL_LIST = 'REDUX/APP/APP/UPDATE_RENTAL_LIST';
+const [
+  USER_LOGGED_STATE,
+  LOG_IN,
+  SIGN_UP,
+  DISPLAY_ALERT,
+  CHECK_TOKEN,
+  UPDATE_ALL_CARS,
+  UPDATE_SINGLE_CAR,
+  TRIGGER_CAR_LIST,
+  TRIGGER_SINGLE_CAR,
+  ADD_NEW_CAR,
+  ADD_NEW_RENT,
+  TRIGGER_RENTALS_LIST,
+  UPDATE_RENTAL_LIST,
+  TRIGGER_MY_CAR_LIST,
+  UPDATE_MY_CAR_LIST,
+  STORE_EFIMEROUS_DATA,
+  DELETE_CAR,
+] = [
+  'REDUX/APP/APP/USER_LOGGED_STATE',
+  'REDUX/APP/APP/LOG_IN',
+  'REDUX/APP/APP/SIGN_UP',
+  'REDUX/APP/APP/DISPLAY_ALERT',
+  'REDUX/APP/APP/CHECK_TOKEN',
+  'REDUX/APP/APP/UPDATE_ALL_CARS',
+  'REDUX/APP/APP/UPDATE_SINGLE_CAR',
+  'REDUX/APP/APP/TRIGGER_CAR_LIST',
+  'REDUX/APP/APP/TRIGGER_SINGLE_CAR',
+  'REDUX/APP/APP/ADD_NEW_CAR',
+  'REDUX/APP/APP/ADD_NEW_RENT',
+  'REDUX/APP/APP/TRIGGER_RENTALS_LIST',
+  'REDUX/APP/APP/UPDATE_RENTAL_LIST',
+  'REDUX/APP/APP/TRIGGER_MY_CAR_LIST',
+  'REDUX/APP/APP/UPDATE_MY_CAR_LIST',
+  'REDUX/APP/APP/STORE_EFIMEROUS_DATA',
+  'REDUX/APP/APP/DELETE_CAR',
+];
 // -------------ACTIONS -----------------------
-const setUserLoggedState = (payload) => ({
-  type: USER_LOGGED_STATE,
-  payload,
-});
-const logIn = (payload) => ({
-  type: LOG_IN,
-  payload,
-});
-const signUp = (payload) => ({
-  type: SIGN_UP,
-  payload,
-});
-const displayAlert = (payload) => ({
-  type: DISPLAY_ALERT,
-  payload,
-});
-const checkToken = (payload) => ({
-  type: CHECK_TOKEN,
-  payload,
-});
-const triggerCarList = (payload) => ({
-  type: TRIGGER_CAR_LIST,
-  payload,
-});
-const triggerSingleCar = (payload) => ({
-  type: TRIGGER_SINGLE_CAR,
-  payload,
-});
-const updateSingleCar = (payload) => ({
-  type: UPDATE_SINGLE_CAR,
-  payload,
-});
-const updateAllCars = (payload) => ({
-  type: UPDATE_ALL_CARS,
-  payload,
-});
-const addNewCar = (payload) => ({
-  type: ADD_NEW_CAR,
-  payload,
-});
-const addNewRent = (payload) => ({
-  type: ADD_NEW_RENT,
-  payload,
-});
-const triggerRentalsList = (payload) => ({
-  type: TRIGGER_RENTALS_LIST,
-  payload,
-});
-const updateRentalsList = (payload) => ({
-  type: UPDATE_RENTAL_LIST,
-  payload,
-});
+const actions = {
+  setUserLoggedState: (payload) => ({
+    type: USER_LOGGED_STATE,
+    payload,
+  }),
+  logIn: (payload) => ({
+    type: LOG_IN,
+    payload,
+  }),
+  signUp: (payload) => ({
+    type: SIGN_UP,
+    payload,
+  }),
+  displayAlert: (payload) => ({
+    type: DISPLAY_ALERT,
+    payload,
+  }),
+  checkToken: (payload) => ({
+    type: CHECK_TOKEN,
+    payload,
+  }),
+  triggerCarList: (payload) => ({
+    type: TRIGGER_CAR_LIST,
+    payload,
+  }),
+  triggerSingleCar: (payload) => ({
+    type: TRIGGER_SINGLE_CAR,
+    payload,
+  }),
+  updateSingleCar: (payload) => ({
+    type: UPDATE_SINGLE_CAR,
+    payload,
+  }),
+  updateAllCars: (payload) => ({
+    type: UPDATE_ALL_CARS,
+    payload,
+  }),
+  addNewCar: (payload) => ({
+    type: ADD_NEW_CAR,
+    payload,
+  }),
+  addNewRent: (payload) => ({
+    type: ADD_NEW_RENT,
+    payload,
+  }),
+  triggerRentalsList: (payload) => ({
+    type: TRIGGER_RENTALS_LIST,
+    payload,
+  }),
+  updateRentalsList: (payload) => ({
+    type: UPDATE_RENTAL_LIST,
+    payload,
+  }),
+  triggerMyCarsList: (payload) => ({
+    type: TRIGGER_MY_CAR_LIST,
+    payload,
+  }),
+  updateMyCarsList: (payload) => ({
+    type: UPDATE_MY_CAR_LIST,
+    payload,
+  }),
+  storeEfimerousData: (payload) => ({
+    type: STORE_EFIMEROUS_DATA,
+    payload,
+  }),
+  deleteCar: (payload) => ({
+    type: DELETE_CAR,
+    payload,
+  }),
+};
 
 // ----------- REDUCERS ----------------------
 
@@ -96,12 +139,16 @@ const dataDefaultState = {
   allCars: false,
   singleCar: false,
   rentalList: false,
+  myCarsList: false,
+  efimerousData: false,
 };
 const dataReducer = (state = dataDefaultState, action) => {
   const newObj = {
     allCars: state.allCars,
-    singleCar: state.single,
+    singleCar: state.singleCar,
     rentalList: state.rentalList,
+    myCarsList: state.myCarsList,
+    efimerousData: state.efimerousData,
   };
   switch (action.type) {
     case UPDATE_ALL_CARS:
@@ -113,6 +160,12 @@ const dataReducer = (state = dataDefaultState, action) => {
     case UPDATE_RENTAL_LIST:
       newObj.rentalList = action.payload;
       return newObj;
+    case UPDATE_MY_CAR_LIST:
+      newObj.myCarsList = action.payload;
+      return newObj;
+    case STORE_EFIMEROUS_DATA:
+      newObj.efimerousData = action.payload;
+      return newObj;
     default:
       return state;
   }
@@ -122,116 +175,96 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
   // ------------- middleware parameters ------------
   const APIurl = 'https://carrito-rentals-backend.herokuapp.com';
   // ------------- middleware functions -------------
-  const fetchUrl = (url, endpoint, httpMethod, callback, auth = '') => {
-    fetch(`${url}${endpoint}`, {
-      method: httpMethod,
-      body: JSON.stringify({
-        username: action.payload,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: auth,
-      },
-    }).then((response) => response.json())
-      .then((json) => callback(json));
-  };
   const logInTest = (json) => {
     if (json.token) {
       if (storageAvailable('sessionStorage')) {
         sessionStorage.setItem('prvTkn', JSON.stringify(json.token));
         sessionStorage.setItem('usrId', JSON.stringify(json.id));
       }
-      store.dispatch(setUserLoggedState(true));
+      store.dispatch(actions.setUserLoggedState(true));
     } else {
-      store.dispatch(displayAlert('User doesn\'t exist'));
+      store.dispatch(actions.displayAlert('User doesn\'t exist'));
     }
   };
   const validateToken = (json) => {
     if (json.auth) {
-      store.dispatch(setUserLoggedState(true));
+      store.dispatch(actions.setUserLoggedState(true));
     } else {
-      store.dispatch(setUserLoggedState(false));
-      store.dispatch(displayAlert('Please log in to continue'));
+      store.dispatch(actions.setUserLoggedState(false));
+      store.dispatch(actions.displayAlert('Please log in to continue'));
     }
   };
   const dispatchToDataStorage = (json) => {
-    store.dispatch(updateAllCars(json));
+    store.dispatch(actions.updateAllCars(json));
   };
   const dispatchToDataStorageTwo = (json) => {
-    store.dispatch(updateSingleCar(json));
+    store.dispatch(actions.updateSingleCar(json));
+  };
+  const dispatchToRentalsList = (json) => {
+    store.dispatch(actions.updateRentalsList(json));
+  };
+  const storeEfimerousData = (json) => {
+    store.dispatch(actions.storeEfimerousData(json));
+  };
+  const dispatchToDataStorageThree = (json) => {
+    store.dispatch(actions.updateMyCarsList(json));
+  };
+  const triggerMyCarsListCallback = (json) => {
+    if (storageAvailable('sessionStorage')) {
+      if (sessionStorage.getItem('prvTkn')) {
+        store.dispatch(actions.triggerMyCarsList(JSON.parse(sessionStorage.getItem('prvTkn'))));
+      }
+    }
+    store.dispatch(actions.storeEfimerousData(json));
   };
   // ------------ middleware actions ----------------------------
   if (action.type === CHECK_TOKEN) {
-    fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, action.payload);
+    fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, false, action.payload);
   }
   if (action.type === LOG_IN) {
-    fetchUrl(APIurl, '/v1/signin', 'POST', logInTest);
+    const logInBody = {
+      username: action.payload,
+    };
+    fetchUrl(APIurl, '/v1/signin', 'POST', logInTest, logInBody, false);
   }
   if (action.type === TRIGGER_RENTALS_LIST) {
-    fetch(`${APIurl}/v1/rentals`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: action.payload,
-      },
-    }).then((response) => response.json())
-      .then((json) => store.dispatch(updateRentalsList(json)));
+    fetchUrl(APIurl, '/v1/rentals', 'GET', dispatchToRentalsList, false, action.payload);
   }
   if (action.type === TRIGGER_CAR_LIST) {
-    fetch(`${APIurl}/v1/cars`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: action.payload,
-      },
-    }).then((response) => response.json())
-      .then((json) => dispatchToDataStorage(json));
+    fetchUrl(APIurl, '/v1/cars', 'GET', dispatchToDataStorage, false, action.payload);
   }
   if (action.type === TRIGGER_SINGLE_CAR) {
-    fetch(`${APIurl}/v1/cars/${action.payload.id}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: action.payload.token,
-      },
-    }).then((response) => response.json())
-      .then((json) => dispatchToDataStorageTwo(json));
+    fetchUrl(APIurl, `/v1/cars${action.payload.id}`, 'GET', dispatchToDataStorageTwo, false, action.payload.token);
+  }
+  if (action.type === TRIGGER_MY_CAR_LIST) {
+    fetchUrl(APIurl, '/v1/mycars', 'GET', dispatchToDataStorageThree, false, action.payload);
+  }
+  if (action.type === DELETE_CAR) {
+    fetchUrl(APIurl, `/v1/cars/${action.payload.id}`, 'DELETE', triggerMyCarsListCallback, false, action.payload.token);
   }
   if (action.type === ADD_NEW_CAR) {
-    fetch(`${APIurl}/v1/cars`, {
-      method: 'POST',
-      body: JSON.stringify({
-        brand: action.payload.brand,
-        model: action.payload.model,
-        seats_number: action.payload.seats_number,
-        transmision: action.payload.transmision,
-        mileage: action.payload.mileage,
-        image: action.payload.image,
-        price_for_day: action.payload.price_for_day,
-        bags_number: action.payload.bags_number,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: action.payload.token,
-      },
-    }).then((response) => response.json());
+    const addNewCarBody = {
+      brand: action.payload.brand,
+      model: action.payload.model,
+      seats_number: action.payload.seats_number,
+      transmision: action.payload.transmision,
+      mileage: action.payload.mileage,
+      image: action.payload.image,
+      price_for_day: action.payload.price_for_day,
+      bags_number: action.payload.bags_number,
+    };
+    fetchUrl(APIurl, `/v1/cars${action.payload.id}`, 'POST', storeEfimerousData, addNewCarBody, action.payload.token);
   }
   if (action.type === ADD_NEW_RENT) {
-    fetch(`${APIurl}/v1/rentals`, {
-      method: 'POST',
-      body: JSON.stringify({
-        car_id: action.payload.car_id,
-        city: action.payload.city,
-        start_date: action.payload.start_date,
-        end_date: action.payload.end_date,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: action.payload.token,
-      },
-    }).then((response) => response.json());
+    const addNewRentBody = {
+      car_id: action.payload.car_id,
+      city: action.payload.city,
+      start_date: action.payload.start_date,
+      end_date: action.payload.end_date,
+    };
+    fetchUrl(APIurl, '/v1/rentals', 'POST', storeEfimerousData, addNewRentBody, action.payload.token);
   }
-  next(action);
+  if (action.type) next(action);
 };
 
 // -------------- EXPORTS -------------------
@@ -241,16 +274,7 @@ export {
   alertReducer,
   dataReducer,
   // -------------- actions ----------------+
-  setUserLoggedState,
-  logIn,
-  signUp,
-  checkToken,
-  displayAlert,
-  triggerCarList,
-  triggerSingleCar,
-  triggerRentalsList,
-  addNewCar,
-  addNewRent,
+  actions,
   // ------------- middlewares -------------
   fetchDataFromAPIMiddleware,
 };
