@@ -4,13 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
-import {
-  addNewRent,
-  checkToken,
-  displayAlert,
-  setUserLoggedState,
-  triggerCarList,
-} from '../redux/app/app';
+import { actions } from '../redux/app/app';
 import { miniIdGenerator } from './utilities/idgen';
 import storageAvailable from './utilities/storage';
 
@@ -41,7 +35,7 @@ const NewRental = () => {
   useEffect(() => {
     if (storageAvailable('sessionStorage')) {
       if (sessionStorage.getItem('prvTkn')) {
-        dispatch(triggerCarList(JSON.parse(sessionStorage.getItem('prvTkn'))));
+        dispatch(actions.triggerCarList(JSON.parse(sessionStorage.getItem('prvTkn'))));
       }
     }
   }, []);
@@ -92,13 +86,13 @@ const NewRental = () => {
       if (storageAvailable('sessionStorage')) {
         if (sessionStorage.getItem('prvTkn')) {
           newObj.token = JSON.parse(sessionStorage.getItem('prvTkn'));
-          dispatch(checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
+          dispatch(actions.checkToken(JSON.parse(sessionStorage.getItem('prvTkn'))));
           const path = '/myrentals';
           history.push(path);
-          dispatch(addNewRent(newObj));
+          dispatch(actions.addNewRent(newObj));
         } else {
-          dispatch(setUserLoggedState(false));
-          dispatch(displayAlert('Please log in to continue'));
+          dispatch(actions.setUserLoggedState(false));
+          dispatch(actions.displayAlert('Please log in to continue'));
         }
       }
     }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logIn } from '../redux/app/app';
+import { actions } from '../redux/app/app';
 import Alert from './modules/Alert';
 import SignUp from './SignUp';
 
@@ -11,7 +11,7 @@ const LogIn = () => {
   const [username, setUsername] = useState('');
 
   const handleSubmit = () => {
-    dispatch(logIn(username));
+    dispatch(actions.logIn(username));
   };
   const openSignUpPopUp = () => {
     setSignUpWindow(true);
