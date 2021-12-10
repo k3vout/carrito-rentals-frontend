@@ -38,7 +38,7 @@ const DeleteCar = () => {
                 {e.brand}
                 {e.model}
                 <span className="badge bg-warning rounded-pill ms-5">
-                  <button type="button" onClick={() => { handleDeleteClick(e.id); }} className="text-decoration-none text-dark">
+                  <button type="button" onClick={() => { handleDeleteClick(e.id); }} className="btn btn-sm btn-link text-dark text-decoration-none ">
                     Delete
                   </button>
                 </span>
