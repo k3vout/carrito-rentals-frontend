@@ -70,19 +70,19 @@ const App = () => {
                         className="flex-column"
                       >
                         <ul className="nav rounded-start flex-column fw-bold">
-                          <li className="nav-link link-dark pe-0">
+                          <li className="nav-link link-dark ms-2 pe-0">
                             <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none ps-2" to="/home">Cars</NavLink>
                           </li>
-                          <li className="nav-link link-dark pe-0">
+                          <li className="nav-link link-dark ms-2 pe-0">
                             <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none ps-2" to="/newcar">New car</NavLink>
                           </li>
-                          <li className="nav-link link-dark pe-0">
+                          <li className="nav-link link-dark ms-2 pe-0">
                             <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none ps-2" to="/deletecar">Delete car</NavLink>
                           </li>
-                          <li className="nav-link link-dark pe-0">
+                          <li className="nav-link link-dark ms-2 pe-0">
                             <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none ps-2" to="/myrentals">My Rentals</NavLink>
                           </li>
-                          <li className="nav-link link-dark pe-0">
+                          <li className="nav-link link-dark ms-2 pe-0">
                             <NavLink onClick={() => { validateLogIn(); }} activeClassName="nav-link text-dark active bg-warning bg-gradient rounded-start shadow-sm" className="link-dark text-decoration-none ps-2" to="/newrent">New rental</NavLink>
                           </li>
                         </ul>
