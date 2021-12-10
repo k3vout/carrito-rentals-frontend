@@ -66,7 +66,6 @@ const App = () => {
                     <div className="menu-container d-flex flex-column justify-content-between vh-100">
                       <img src={logo} className="img-fluid mt-5 p-4" alt="..." />
                       <div
-                        activeKey="/home"
                         className="flex-column"
                       >
                         <ul className="nav rounded-start flex-column fw-bold">

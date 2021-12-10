@@ -218,7 +218,12 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     store.dispatch(actions.storeEfimerousData(json));
   };
   const dispatchNewUser = (json) => {
-    store.dispatch(actions.logIn(json.username));
+    console.log(json);
+    if (json.status === 'bad') {
+      store.dispatch(actions.displayAlert('User already exist'));
+    } else {
+      store.dispatch(actions.logIn(json.username));
+    }
   };
   // ------------ middleware actions ----------------------------
   if (action.type === CHECK_TOKEN) {
