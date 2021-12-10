@@ -21,7 +21,6 @@ const MyRentals = () => {
     let value = '';
     cars.forEach((e) => {
       if (e.id === cid) {
-        console.log(e[type]);
         value = e[type];
       }
     });

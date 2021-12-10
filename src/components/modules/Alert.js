@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Alert = ({ message }) => (
-  <div>
-    <p className="creators text-muted text-center">
-      <small>
-        {message}
-      </small>
-    </p>
-  </div>
+  <p className="creators text-muted text-center">
+    <small>
+      {message}
+    </small>
+  </p>
 );
 
 Alert.propTypes = {
