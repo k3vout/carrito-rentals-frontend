@@ -217,6 +217,9 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     }
     store.dispatch(actions.storeEfimerousData(json));
   };
+  const dispatchNewUser = (json) => {
+    store.dispatch(actions.logIn(json.username));
+  };
   // ------------ middleware actions ----------------------------
   if (action.type === CHECK_TOKEN) {
     fetchUrl(APIurl, '/v1/validate', 'POST', validateToken, false, action.payload);
@@ -226,6 +229,12 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
       username: action.payload,
     };
     fetchUrl(APIurl, '/v1/signin', 'POST', logInTest, logInBody, false);
+  }
+  if (action.type === SIGN_UP) {
+    const signUpBody = {
+      username: action.payload,
+    };
+    fetchUrl(APIurl, '/v1/signup', 'POST', dispatchNewUser, signUpBody, false);
   }
   if (action.type === TRIGGER_RENTALS_LIST) {
     fetchUrl(APIurl, '/v1/rentals', 'GET', dispatchToRentalsList, false, action.payload);

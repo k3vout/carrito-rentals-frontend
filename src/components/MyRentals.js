@@ -54,8 +54,20 @@ const MyRentals = () => {
           </small>
         </p>
       </div>
-    ) : <div>no rentals</div>
-    ) : null
+    ) : (
+      <div className="justify-content-center align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-bg text-center">
+        <h5 className="display">
+          You have no rentals created yet.
+          <br />
+          Go to New Rental to create one.
+        </h5>
+      </div>
+    )
+    ) : (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    )
   );
 };
 
