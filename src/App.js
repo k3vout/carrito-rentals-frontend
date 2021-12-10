@@ -9,6 +9,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Cars from './components/Cars';
 import NewCar from './components/NewCar';
 import SingleCar from './components/SingleCar';
@@ -84,19 +86,13 @@ const App = () => {
                 </p>
                 <div className="d-flex justify-content-center mb-2 pe-3">
                   <span>
-                    <img src="facebook.svg" className="social-icon" alt="..." />
+                    <FontAwesomeIcon icon={faFacebook} className="social-icon" />
                   </span>
                   <span>
-                    <img src="facebook.svg" className="social-icon" alt="..." />
+                    <FontAwesomeIcon icon={faInstagram} className="social-icon" />
                   </span>
                   <span>
-                    <img src="facebook.svg" className="social-icon" alt="..." />
-                  </span>
-                  <span>
-                    <img src="facebook.svg" className="social-icon" alt="..." />
-                  </span>
-                  <span>
-                    <img src="facebook.svg" className="social-icon" alt="..." />
+                    <FontAwesomeIcon icon={faTwitter} className="social-icon" />
                   </span>
                 </div>
               </div>
