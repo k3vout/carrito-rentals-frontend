@@ -52,8 +52,20 @@ const DeleteCar = () => {
           </small>
         </p>
       </div>
-    ) : <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-gradient custom-bg">no cars to delete</div>
-    ) : null
+    ) : (
+      <div className="justify-content-center align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-bg text-center">
+        <h5 className="display">
+          You have no cars created yet.
+          <br />
+          Go to New Car to create one.
+        </h5>
+      </div>
+    )
+    ) : (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    )
   );
 };
 
