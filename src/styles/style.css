@@ -82,3 +82,7 @@ body {
 .suggestion_list {
   max-width: 195px;
 }
+
+.rental {
+  width: 18rem;
+}

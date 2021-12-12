@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Carousel from 'react-bootstrap/Carousel';
 import { useHistory } from 'react-router';
 import { actions } from '../redux/app/app';
@@ -79,13 +81,13 @@ const Cars = () => {
                   </p>
                   <div className="d-flex justify-content-center mb-5">
                     <span>
-                      <img src="facebook.svg" className="social-icon" alt="..." />
+                      <FontAwesomeIcon icon={faFacebook} className="social-icon" />
                     </span>
                     <span>
-                      <img src="facebook.svg" className="social-icon" alt="..." />
+                      <FontAwesomeIcon icon={faInstagram} className="social-icon" />
                     </span>
                     <span>
-                      <img src="facebook.svg" className="social-icon" alt="..." />
+                      <FontAwesomeIcon icon={faTwitter} className="social-icon" />
                     </span>
                   </div>
                 </div>

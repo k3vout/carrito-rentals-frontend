@@ -1,4 +1,4 @@
-const fetchUrl = (url, endpoint, httpMethod, callback, body = false, auth = false) => {
+const fetchUrl = async (url, endpoint, httpMethod, callback, body = false, auth = false) => {
   const paramsBuilder = {
     method: httpMethod,
     headers: {

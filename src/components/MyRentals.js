@@ -21,7 +21,6 @@ const MyRentals = () => {
     let value = '';
     cars.forEach((e) => {
       if (e.id === cid) {
-        console.log(e[type]);
         value = e[type];
       }
     });
@@ -29,13 +28,13 @@ const MyRentals = () => {
   };
   return (rentals
     ? (rentals.length > 0 ? (
-      <div>
-        <div>
+      <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-bg">
+        <div className="d-flex flex-wrap w-75 mx-auto overflow-scroll justify-content-center custom-position mb-3">
           {rentals.map((e) => (
-            <div key={e.id}>
+            <div className="card border border-warning rounded-0 border-1 shadow-lg rental" key={e.id}>
               <img src={getCarInfo(e.car_id, 'image')} className="card-img-top" alt="..." />
-              <div>
-                <h5>
+              <div className="card-body bg-dark text-center">
+                <h5 className="card-title text-warning py-2">
                   {getCarInfo(e.car_id, 'brand')}
                   {getCarInfo(e.car_id, 'model')}
                 </h5>
@@ -54,8 +53,20 @@ const MyRentals = () => {
           </small>
         </p>
       </div>
-    ) : <div>no rentals</div>
-    ) : null
+    ) : (
+      <div className="justify-content-center align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-bg text-center">
+        <h5 className="display">
+          You have no rentals created yet.
+          <br />
+          Go to New Rental to create one.
+        </h5>
+      </div>
+    )
+    ) : (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    )
   );
 };
 
