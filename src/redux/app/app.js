@@ -267,7 +267,7 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
       price_for_day: action.payload.price_for_day,
       bags_number: action.payload.bags_number,
     };
-    fetchUrl(APIurl, `/v1/cars${action.payload.id}`, 'POST', storeEfimerousData, addNewCarBody, action.payload.token);
+    fetchUrl(APIurl, '/v1/cars', 'POST', storeEfimerousData, addNewCarBody, action.payload.token);
   }
   if (action.type === ADD_NEW_RENT) {
     const addNewRentBody = {
