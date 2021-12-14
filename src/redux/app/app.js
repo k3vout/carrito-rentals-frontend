@@ -248,7 +248,7 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     fetchUrl(APIurl, '/v1/cars', 'GET', dispatchToDataStorage, false, action.payload);
   }
   if (action.type === TRIGGER_SINGLE_CAR) {
-    fetchUrl(APIurl, `/v1/cars${action.payload.id}`, 'GET', dispatchToDataStorageTwo, false, action.payload.token);
+    fetchUrl(APIurl, `/v1/cars/${action.payload.id}`, 'GET', dispatchToDataStorageTwo, false, action.payload.token);
   }
   if (action.type === TRIGGER_MY_CAR_LIST) {
     fetchUrl(APIurl, '/v1/mycars', 'GET', dispatchToDataStorageThree, false, action.payload);
