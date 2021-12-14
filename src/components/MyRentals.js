@@ -26,6 +26,11 @@ const MyRentals = () => {
     });
     return value;
   };
+  const parseDate = (date) => {
+    const parsed = Date.parse(date);
+    const newDate = new Date(parsed);
+    return newDate.toLocaleDateString();
+  };
   return (rentals
     ? (rentals.length > 0 ? (
       <div className="justify-content-between align-content-center d-flex flex-column pt-5 vh-100 w-100 bg-transparent custom-bg">
@@ -38,7 +43,7 @@ const MyRentals = () => {
                   {getCarInfo(e.car_id, 'brand')}
                   {getCarInfo(e.car_id, 'model')}
                 </h5>
-                <p className="card-text text-muted m-0">{e.start_date}</p>
+                <p className="card-text text-muted m-0">{parseDate(e.start_date)}</p>
                 <p className="card-text text-muted pb-3">
                   US$
                   {getCarInfo(e.car_id, 'price_for_day')}

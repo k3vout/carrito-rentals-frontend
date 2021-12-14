@@ -218,7 +218,6 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     store.dispatch(actions.storeEfimerousData(json));
   };
   const dispatchNewUser = (json) => {
-    console.log(json);
     if (json.status === 'bad') {
       store.dispatch(actions.displayAlert('User already exist'));
     } else {
