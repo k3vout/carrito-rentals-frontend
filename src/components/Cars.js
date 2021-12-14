@@ -64,7 +64,9 @@ const Cars = () => {
             <div className="row">
               {a.map((b) => (
                 <div onClick={() => { handleCarClick(b.id); }} className="col-lg-auto col-md-12 col-sm-12 text-center d-flex flex-column" key={b.id}>
-                  <img alt="..." src={b.image} className="d-block mx-5 thumbnail align-self-center" />
+                  <div className="thumbnail_container d-flex justify-content-center align-items-center align-self-center mx-5 bg-warning">
+                    <img alt="..." src={b.image} className="d-block thumbnail" />
+                  </div>
                   <h6 className="pt-5">{b.model}</h6>
                   <p className="text-muted">..........</p>
                   <p className="text-muted m-0">
