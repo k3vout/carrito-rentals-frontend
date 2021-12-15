@@ -67,7 +67,11 @@ const Cars = () => {
                   <div className="thumbnail_container d-flex justify-content-center align-items-center align-self-center mx-5 bg-warning">
                     <img alt="..." src={b.image} className="d-block thumbnail" />
                   </div>
-                  <h6 className="pt-5">{b.model}</h6>
+                  <h6 className="pt-5">
+                    {b.brand}
+                    {' '}
+                    {b.model}
+                  </h6>
                   <p className="text-muted">..........</p>
                   <p className="text-muted m-0">
                     Transmision: &nbsp;

@@ -10,6 +10,7 @@ import storageAvailable from './utilities/storage';
 
 const NewRental = () => {
   const cars = useSelector((data) => data.dataReducer).allCars;
+  const carToR = useSelector((data) => data.dataReducer).carToRent;
   const [cityAdd, setCityAdd] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,6 +39,12 @@ const NewRental = () => {
         dispatch(actions.triggerCarList(JSON.parse(sessionStorage.getItem('prvTkn'))));
       }
     }
+    if (carToR) {
+      handleInputChange('car_id', carToR.id);
+    }
+    return () => {
+      dispatch(actions.setCarToRent(false));
+    };
   }, []);
   const appendNotification = (id, string) => {
     const parent = document.getElementById(id);
@@ -114,16 +121,19 @@ const NewRental = () => {
               </div>
             </div>
             <div className="col-auto" id="car_id_field">
-              <select onChange={(e) => { handleInputChange('car_id', e.target.value); }} className="form-select form-control">
-                <option selected disabled>Choose a model &nbsp; &nbsp; &nbsp;</option>
-                {cars ? (cars.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.brand}
-                    {' '}
-                    {a.model}
-                  </option>
-                ))) : null}
-              </select>
+              {carToR ? <input className="form-control" type="text" placeholder={carToR.name} disabled />
+                : (
+                  <select onChange={(e) => { handleInputChange('car_id', e.target.value); }} className="form-select form-control">
+                    <option selected disabled>Choose a model &nbsp; &nbsp; &nbsp;</option>
+                    {cars ? (cars.map((a) => (
+                      <option key={a.id} value={a.id}>
+                        {a.brand}
+                        {' '}
+                        {a.model}
+                      </option>
+                    ))) : null}
+                  </select>
+                )}
             </div>
           </div>
           <div className="row g-3 justify-content-between py-1">
