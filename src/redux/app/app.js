@@ -20,6 +20,7 @@ const [
   UPDATE_MY_CAR_LIST,
   STORE_EFIMEROUS_DATA,
   DELETE_CAR,
+  SET_CAR_TO_RENT,
 ] = [
   'REDUX/APP/APP/USER_LOGGED_STATE',
   'REDUX/APP/APP/LOG_IN',
@@ -38,6 +39,7 @@ const [
   'REDUX/APP/APP/UPDATE_MY_CAR_LIST',
   'REDUX/APP/APP/STORE_EFIMEROUS_DATA',
   'REDUX/APP/APP/DELETE_CAR',
+  'REDUX/APP/APP/SET_CAR_TO_RENT',
 ];
 // -------------ACTIONS -----------------------
 const actions = {
@@ -109,6 +111,10 @@ const actions = {
     type: DELETE_CAR,
     payload,
   }),
+  setCarToRent: (payload) => ({
+    type: SET_CAR_TO_RENT,
+    payload,
+  }),
 };
 
 // ----------- REDUCERS ----------------------
@@ -141,6 +147,7 @@ const dataDefaultState = {
   rentalList: false,
   myCarsList: false,
   efimerousData: false,
+  carToRent: false,
 };
 const dataReducer = (state = dataDefaultState, action) => {
   const newObj = {
@@ -149,6 +156,7 @@ const dataReducer = (state = dataDefaultState, action) => {
     rentalList: state.rentalList,
     myCarsList: state.myCarsList,
     efimerousData: state.efimerousData,
+    carToRent: state.carToRent,
   };
   switch (action.type) {
     case UPDATE_ALL_CARS:
@@ -165,6 +173,9 @@ const dataReducer = (state = dataDefaultState, action) => {
       return newObj;
     case STORE_EFIMEROUS_DATA:
       newObj.efimerousData = action.payload;
+      return newObj;
+    case SET_CAR_TO_RENT:
+      newObj.carToRent = action.payload;
       return newObj;
     default:
       return state;
@@ -218,7 +229,6 @@ const fetchDataFromAPIMiddleware = (store) => (next) => (action) => {
     store.dispatch(actions.storeEfimerousData(json));
   };
   const dispatchNewUser = (json) => {
-    console.log(json);
     if (json.status === 'bad') {
       store.dispatch(actions.displayAlert('User already exist'));
     } else {

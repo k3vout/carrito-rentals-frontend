@@ -23,12 +23,14 @@ body {
 }
 
 .thumbnail {
-  width: 100px;
-  height: 100px;
-  background-color: skyblue;
-  text-align: center;
-  color: white;
-  font-size: 30px;
+  width: 140%;
+  height: auto;
+}
+
+.thumbnail_container {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
 }
 
 .social-icon {
@@ -43,12 +45,7 @@ body {
 }
 
 .car-big-pic {
-  /* padding-top: 10vh; */
-  max-height: 40vh;
-}
-
-.car-details-table {
-  /* width: 220px; */
+  max-height: 50vh;
 }
 
 .carrito-splash-pic {
