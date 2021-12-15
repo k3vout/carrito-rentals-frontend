@@ -31,7 +31,6 @@ body {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  /* overflow: hidden; */
 }
 
 .social-icon {
@@ -46,12 +45,7 @@ body {
 }
 
 .car-big-pic {
-  /* padding-top: 10vh; */
   max-height: 50vh;
-}
-
-.car-details-table {
-  /* width: 220px; */
 }
 
 .carrito-splash-pic {
