@@ -4,10 +4,6 @@ This is an app that allows the user to create an account, you can then login and
 
 For the backend we used Ruby on Rails, you can see more on the [Carrito Rental Backend Repository](https://github.com/sevinchek/carrito-rentals-backend)
 
-## Backend Pull Request
-
-https://github.com/sevinchek/carrito-rentals-backend/pull/33
-
 ## Live Demo
 
 Watch it live [here](https://carrito-rentals-frontend.herokuapp.com/)
