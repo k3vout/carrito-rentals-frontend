@@ -21,7 +21,7 @@ const SingleCar = () => {
             <img
               src={data.image}
               id="slide"
-              className="img-fluid car-big-pic"
+              className="img-fluid car-big-pic m-5"
               alt="..."
             />
           </div>
