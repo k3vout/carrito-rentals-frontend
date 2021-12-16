@@ -22,5 +22,4 @@ describe('Carrito Rental', () => {
     );
     expect(myrender).toMatchSnapshot();
   });
-
 });

@@ -1,5 +1,5 @@
 const apiresponse = {
-  "auth": true,
+  auth: true,
 };
 
 export default apiresponse;
