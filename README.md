@@ -11,6 +11,12 @@ Watch it live [here](https://carrito-rentals-frontend.herokuapp.com/)
 
 ![screenshot](./src/images/screenshots/screenshot.png)
 
+## Kanban Board
+See our Kanban Board [here](https://github.com/sevinchek/carrito-rentals-backend/projects/1)
+
+This is the [initial state](https://user-images.githubusercontent.com/72412404/144319547-9250a4d7-7617-45bf-866d-e9a336b4fd84.png)
+
+
 ## Built With
 
 - ![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
