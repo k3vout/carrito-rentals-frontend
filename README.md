@@ -1,71 +1,98 @@
-# Getting Started with Create React App
+# Carrito Rental Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an app that allows the user to create an account, you can then login and you will be able to view the cars available, rent a car, create a new car and delete it. 
 
-## Available Scripts
+For the backend we used Ruby on Rails, you can see more on the [Carrito Rental Backend Repository](https://github.com/sevinchek/carrito-rentals-backend)
 
-In the project directory, you can run:
+## Live Demo
 
-### `yarn start`
+Watch it live [here](https://carrito-rentals-frontend.herokuapp.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![screenshot](./src/images/screenshots/screenshot.png)
 
-### `yarn test`
+## Kanban Board
+See our Kanban Board [here](https://github.com/sevinchek/carrito-rentals-backend/projects/1)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is the [initial state](https://user-images.githubusercontent.com/72412404/144319547-9250a4d7-7617-45bf-866d-e9a336b4fd84.png)
 
-### `yarn build`
+Team members: 4
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Built With
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+- ![REDUX](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+- ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `yarn eject`
+1. Clone the repo
+   ```sh
+   git clone git@github.com:sevinchek/carrito-rentals-frontend.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Testing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Run the tests
+   ```sh
+   npm test
+   ```
+   or
+   ```sh
+   npm run watch
+   ```
+2. See report in browser 
+   ```sh
+   open ./coverage/lcov-report/index.html
+   ```
+## Authors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+👤 **Sebastián Muñoz**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- GitHub: [@smunozmo](https://github.com/smunozmo)
+- Twitter: [@smunozmo](https://twitter.com/smunozmo)
+- Linkedin: [Sebastián Muñoz](https://www.linkedin.com/in/smunozmo/)
 
-## Learn More
+👤 **Kevin**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- GitHub: [@sevinchek](https://github.com/sevinchek)
+- Twitter: [@sevinchek](https://twitter.com/sevinchek)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/sevinchek)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👤 **Mario Chois**
 
-### Code Splitting
+- GitHub: [@githubhandle](https://github.com/hunter4466/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mario-chois-5a13b6b6/)
+- Angelist: [@angelist](https://angel.co/u/mario-chois)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+👤 **Rhyine Stewart**
 
-### Analyzing the Bundle Size
+- GitHub: [@the-catalystmc](https://github.com/the-catalystmc)
+- Twitter: [@catalystspeaks](https://twitter.com/catalystspeaks)
+- LinkedIn: [Rhyine Stewart](https://linkedin.com/in/rhyinestewart)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🤝 Contributing
 
-### Making a Progressive Web App
+Contributions, issues, and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Feel free to check the [issues page](https://github.com/sevinchek/carrito-rentals-frontend/issues).
 
-### Advanced Configuration
+## 👋 Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[Microverse.](https://www.microverse.org)
 
-### Deployment
+[Design by Nelson Sakwa.](https://www.behance.net/sakwadesignstudio) 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Show your support
 
-### `yarn build` fails to minify
+Give a ⭐️ if you like this project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# carrito-rentals-frontend
+## 📝 License
+
+This project is [MIT](https://github.com/sevinchek/carrito-rentals-frontend/development/LICENSE) licensed.
